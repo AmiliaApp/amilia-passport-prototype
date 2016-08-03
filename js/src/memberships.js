@@ -79,6 +79,7 @@
     },
     onMouseup: function(e) {
       this.touch = false;
+      _.defer(this.maybeSnap);
     },
     maybeSnap: function() {
       var cards = this.$('.card');
