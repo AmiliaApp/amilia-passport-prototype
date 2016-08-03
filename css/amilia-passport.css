@@ -25,6 +25,15 @@
     content: "\e901";
 }
 
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 #side-menu {
   width: 56px;
   height: 100%;
@@ -55,7 +64,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 375px;
+  height: 100vh;
   background-color: #46aaf8;
   white-space: nowrap;
   overflow-x: hidden;
@@ -80,11 +89,12 @@
 }
 
 .card {
-  width: 581px;
+  max-width: 581px;
+  max-height: 345px;
   padding: 15px;
   margin-top: 15px;
   border-radius: 10px;
-  border: 2px solid #ddd;
+  border: 2px solid #999;
   background-color: #fff;
 }
 
@@ -92,8 +102,13 @@
   margin: 0;
 }
 
+.card .first.row {
+  display: table-row;
+}
+
 .card .org {
-  display: table;
+  display: table-cell;
+  vertical-align: top;
 }
 
 .card .org .logo {
@@ -101,7 +116,6 @@
   vertical-align: top;
   margin-left: 10px;
   width: 100px;
-  height: 175px;
   overflow: hidden;
 }
 
@@ -114,8 +128,7 @@
 .card .org .info {
   display: table-cell;
   vertical-align: top;
-  padding-left: 15px;
-  width: 200px;
+  padding: 0 15px;
   font-size: 14px;
 }
 
@@ -125,8 +138,8 @@
 }
 
 .card .picture {
-  width: 175px;
-  height: 175px;
+  display: table-cell;
+  width: 30%;
   border-top-right-radius: 10px;
   overflow: hidden;
 }

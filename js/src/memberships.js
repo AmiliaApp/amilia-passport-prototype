@@ -11,8 +11,8 @@
 
   Backbone.MembershipView = Backbone.View.extend({
     template: _.template([
-      '<div class="row">',
-      '  <div class="org pull-left">',
+      '<div class="row first">',
+      '  <div class="org">',
       '    <div class="logo">',
       '      <img src="<%=OrganizationLogoUrl%>"/>',
       '    </div>',
@@ -23,13 +23,11 @@
       '      <div class="email"><%=OrganizationEmail%></div>',
       '    </div>',
       '  </div>',
-      '  <div class="pull-right">',
-      '    <div class="picture">',
-      '      <img src="<%=ProfilePictureUrl%>"/>',
-      '    </div>',
+      '  <div class="picture">',
+      '    <img src="<%=ProfilePictureUrl%>"/>',
       '  </div>',
       '</div>',
-      '<div class="row">',
+      '<div class="row second">',
       '  <div class="person-info">',
       '    <div class="name"><%=FirstName%> <%=LastName%></div>',
       '    <canvas class="bar-code"></canvas>',
@@ -39,6 +37,10 @@
     className: 'card',
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
+      this.$el.css({
+        width: Math.max(screen.width, screen.height) - 86,
+        height: Math.min(screen.width, screen.height) - 30
+      });
       this.$barCode = this.$el.find('.bar-code');
 
       JsBarcode(this.$barCode[0], 'P' + this.model.get('Id'), {
