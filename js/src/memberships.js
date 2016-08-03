@@ -1,5 +1,11 @@
 (function() {
 
+  // From CSS
+  var SIDE_MENU_WIDTH = 86,
+      CARD_MARGIN = 15,
+      SCREEN_MAX_WIDTH = 675,
+      SCREEN_MAX_HEIGHT = 375;
+
   Backbone.MembershipModel = Backbone.Model.extend({
     idAttribute: 'Id'
   });
@@ -38,8 +44,8 @@
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.css({
-        width: Math.max(screen.width, screen.height) - 86,
-        height: Math.min(screen.width, screen.height) - 30
+        width: Math.min(Math.max(screen.width, screen.height), SCREEN_MAX_WIDTH) - SIDE_MENU_WIDTH,
+        height: Math.min(Math.min(screen.width, screen.height), SCREEN_MAX_HEIGHT) - CARD_MARGIN*2
       });
       this.$barCode = this.$el.find('.bar-code');
 
@@ -55,16 +61,25 @@
   Backbone.MembershipsView = Backbone.View.extend({
     className: 'cards',
     events: {
-      "scroll": "onScroll",
-      "mousedown": "onMousedown",
-      "mouseup": "onMouseup",
-      "touchstart": "onMousedown",
-      "touchend": "onMouseup"
+      'scroll': 'onScroll',
+      'mousedown': 'onMousedown',
+      'mouseup': 'onMouseup',
+      'touchstart': 'onMousedown',
+      'touchend': 'onMouseup'
     },
     initialize: function(options) {
       this.maybeSnap = _.bind(_.debounce(this.maybeSnap, 250), this);
       this.checkScrollDone = _.bind(_.debounce(this.checkScrollDone, 100), this);
+      this.onResize = _.bind(_.debounce(this.onResize, 100), this);
       this.lastSnap = 0;
+      $(window).on('resize', this.onResize);
+    },
+    remove: function() {
+      $(window).off('resize', this.onResize);
+      return Backbone.View.prototype.remove.apply(this, arguments);
+    },
+    onResize: function() {
+      this.render();
     },
     onScroll: function(e) {
       this.scroll = true;
@@ -83,33 +98,43 @@
       _.defer(this.maybeSnap);
     },
     maybeSnap: function() {
-      var cards = this.$('.card');
-      if (cards.length == 0 || this.touch || this.scroll) return this;
+      if (this.cards.length == 0 || this.touch || this.scroll) return this;
 
-      var index = 0,
-          dist = cards.first().position().top;
-
-      cards.each(function(i) {
-        if (Math.abs($(this).position().top) < Math.abs(dist)) {
-          index = i;
-          dist = $(this).position().top;
-        }
-      });
-
+      var dist = this._getSnapDist();
       if (dist && Math.abs(dist) > 10 && _.now() > this.lastSnap + 1000) {
         console.log('maybeSnap', dist);
         this.$el.animate({scrollTop: this.$el.scrollTop() + dist+'px'});
         this.lastSnap = _.now();
       }
     },
+    _getSnapDist: function() {
+      var cards = this.$('.card'),
+          index = 0,
+          dist = cards.first().position().top;
+      cards.each(function(i) {
+        if (Math.abs($(this).position().top) < Math.abs(dist)) {
+          index = i;
+          dist = $(this).position().top;
+        }
+      });
+      return dist;
+    },
     render: function() {
+      this.cards || (this.cards = []);
+      for (var i = 0; i < this.cards.length; i++) this.cards[i].remove();
+      this.cards = [];
+
       var deck = this;
       this.collection.each(function(model) {
         var card = new Backbone.MembershipView({
           model: model
         });
         deck.$el.append(card.render().$el);
+        deck.cards.push(card);
       });
+
+      var dist = this._getSnapDist();
+      if (dist > 0) this.$el.css('scrollTop', this.$el.scrollTop() + dist+'px');
       return this;
     }
   });
