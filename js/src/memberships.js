@@ -63,10 +63,14 @@
     },
     initialize: function(options) {
       this.maybeSnap = _.bind(_.debounce(this.maybeSnap, 250), this);
-      this.onScroll = _.bind(_.debounce(this.onScroll, 100), this);
+      this.checkScrollDone = _.bind(_.debounce(this.checkScrollDone, 100), this);
     },
     onScroll: function(e) {
       this.scroll = true;
+      if (!this.touch) _.defer(this.checkScrollDone);
+    },
+    checkScrollDone: function() {
+      this.scroll = false;
       if (!this.touch) _.defer(this.maybeSnap);
     },
     onMousedown: function(e) {
@@ -75,12 +79,10 @@
     },
     onMouseup: function(e) {
       this.touch = false;
-      if (this.scroll) _.defer(this.maybeSnap);
-      this.scroll = false;
     },
     maybeSnap: function() {
       var cards = this.$('.card');
-      if (cards.length == 0 || this.touch) return this;
+      if (cards.length == 0 || this.touch || this.scroll) return this;
 
       var index = 0,
           dist = cards.first().position().top;
