@@ -90,7 +90,7 @@
         }
       });
 
-      if (Math.abs(dist) > 10 || _.now() > this.lastSnap + 1000) {
+      if (dist && Math.abs(dist) > 10 || _.now() > this.lastSnap + 1000) {
         console.log('maybeSnap', dist);
         this.$el.animate({scrollTop: this.$el.scrollTop() + dist+'px'});
         this.lastSnap = _.now();
