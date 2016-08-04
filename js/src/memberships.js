@@ -24,9 +24,10 @@
       '    </div>',
       '    <div class="info">',
       '      <div class="name"><%=OrganizationName%></div>',
-      '      <div class="website"><%=OrganizationWebsite%></div>',
-      '      <div class="phone"><%=OrganizationPhone%></div>',
+      '      <div class="website"><%=Name%></div>',
+      '      <br/>',
       '      <div class="email"><%=OrganizationEmail%></div>',
+      '      <div class="phone"><%=OrganizationPhone%></div>',
       '    </div>',
       '  </div>',
       '  <div class="picture">',
@@ -36,22 +37,26 @@
       '<div class="row second">',
       '  <div class="person-info">',
       '    <div class="name"><%=FirstName%> <%=LastName%></div>',
-      '    <canvas class="bar-code"></canvas>',
+      '    <canvas class="bar-code pull-left"></canvas>',
+      '    <div class="dates pull-right">Exp: 31 déc 2016</div>',
       '  </div>',
       '</div>'
     ].join('\n')),
     className: 'card',
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
+
+      var screenWidth = Math.max(screen.width, screen.height),
+          screenHeight = Math.min(screen.width, screen.height);
       this.$el.css({
-        width: Math.min(Math.max(screen.width, screen.height), Backbone.SCREEN_MAX_WIDTH) - Backbone.SIDE_MENU_WIDTH,
-        height: Math.min(Math.min(screen.width, screen.height), Backbone.SCREEN_MAX_HEIGHT) - Backbone.CARD_MARGIN*2
+        width: Math.min(screenWidth, Backbone.SCREEN_MAX_WIDTH) - Backbone.SIDE_MENU_WIDTH,
+        height: Math.min(screenHeight, Backbone.SCREEN_MAX_HEIGHT) - Backbone.CARD_MARGIN*2
       });
       this.$barCode = this.$el.find('.bar-code');
 
       JsBarcode(this.$barCode[0], 'P' + this.model.get('PersonId'), {
-        width: 3,
-        height: 50
+        width: screenWidth < 600 ? 2 : 3,
+        height: screenWidth < 600 ? 40 : 50
       });
 
       return this;
