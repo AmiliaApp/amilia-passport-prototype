@@ -1,10 +1,10 @@
 (function() {
 
   // From CSS
-  var SIDE_MENU_WIDTH = 86,
-      CARD_MARGIN = 15,
-      SCREEN_MAX_WIDTH = 675,
-      SCREEN_MAX_HEIGHT = 375;
+  Backbone.SIDE_MENU_WIDTH = 86;
+  Backbone.CARD_MARGIN = 15;
+  Backbone.SCREEN_MAX_WIDTH = 675;
+  Backbone.SCREEN_MAX_HEIGHT = 375;
 
   Backbone.MembershipModel = Backbone.Model.extend({
     idAttribute: 'Id'
@@ -44,12 +44,12 @@
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.css({
-        width: Math.min(Math.max(screen.width, screen.height), SCREEN_MAX_WIDTH) - SIDE_MENU_WIDTH,
-        height: Math.min(Math.min(screen.width, screen.height), SCREEN_MAX_HEIGHT) - CARD_MARGIN*2
+        width: Math.min(Math.max(screen.width, screen.height), Backbone.SCREEN_MAX_WIDTH) - Backbone.SIDE_MENU_WIDTH,
+        height: Math.min(Math.min(screen.width, screen.height), Backbone.SCREEN_MAX_HEIGHT) - Backbone.CARD_MARGIN*2
       });
       this.$barCode = this.$el.find('.bar-code');
 
-      JsBarcode(this.$barCode[0], 'P' + this.model.get('Id'), {
+      JsBarcode(this.$barCode[0], 'P' + this.model.get('PersonId'), {
         width: 3,
         height: 50
       });

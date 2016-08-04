@@ -11,8 +11,9 @@ $(document).ready(function() {
           el: $('#memberships'),
           collection: new Backbone.MembershipCollection(window._membershipCards)
         }),
-        purchases: new Backbone.View({
-          el: $('#purchases')
+        purchases: new Backbone.PurchasesView({
+          el: $('#purchases'),
+          collection: new Backbone.PurchaseCollection(window._purchases)
         }),
         communications: new Backbone.View({
           el: $('#communications')
