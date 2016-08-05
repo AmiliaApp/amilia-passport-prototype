@@ -8,22 +8,59 @@
     model: Backbone.PurchaseModel
   });
 
+  Backbone.ReceiptView = Backbone.View.extend({
+    template: undefined,
+    className: 'receipt-wrapper',
+    events: {
+      'click .close': 'onClose',
+    },
+    onClose: function(e) {
+      e.preventDefault();
+      var view = this;
+      this.$el.fadeOut(function() {
+        view.remove();
+      });
+    },
+    render: function() {
+      this.$el.html(this.template(this.model.toJSON()));
+
+      this.$el.find('.receipt').css({
+        width: Math.min(Math.max(screen.width, screen.height), Backbone.SCREEN_MAX_WIDTH) - Backbone.SIDE_MENU_WIDTH
+      });
+
+      this.$el.hide();
+
+      return this;
+    }
+  });
+  $('document').ready(function() {
+    Backbone.ReceiptView.prototype.template = _.template($('#receipt-template').html());
+  });
+
   Backbone.PurchaseView = Backbone.View.extend({
-    template: _.template([
-      '<div class="col org"><img src="<%=OrganizationLogoUrl%>" /></div>',
-      '<div class="col name"><strong><%=OrganizationName%></strong><br/><%=Name%></div>',
-      '<div class="col person">',
-      '  <img src="<%=ProfilePictureUrl%>" />',
-      '  <div class="name"><%=FirstName%></div>',
-      '</div>',
-      '<div class="col invoice"><a href="#" class="receipt">Facture</a></div>'
-    ].join('\n')),
+    template: undefined,
     className: 'purchase',
     events: {
-      'click a.receipt': 'onReceipt'
+      'click a.show-receipt': 'onReceipt'
+    },
+    initialize: function(options) {
+      this.onResize = _.bind(_.debounce(this.onResize, 100), this);
+      $(window).on('resize', this.onResize);
+    },
+    remove: function() {
+      $(window).off('resize', this.onResize);
+      return Backbone.View.prototype.remove.apply(this, arguments);
+    },
+    onResize: function() {
+      this.render();
     },
     onReceipt: function(e) {
       e.preventDefault();
+      var receiptView = new Backbone.ReceiptView({
+        model: this.model
+      }).render();
+      $('#purchases').append(receiptView.$el);
+      receiptView.$el.fadeIn();
     },
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
@@ -32,6 +69,9 @@
       });
       return this;
     }
+  });
+  $('document').ready(function() {
+    Backbone.PurchaseView.prototype.template = _.template($('#purchase-template').html());
   });
 
   Backbone.PurchasesView = Backbone.View.extend({

@@ -200,3 +200,22 @@ body {
   vertical-align: top;
   text-align: center;
 }
+
+.receipt-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 15px 0 15px 71px;
+  background-color: #46aaf8;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.receipt-wrapper .receipt {
+  background-color: #fff;
+  border: 1px solid #999;
+  padding: 15px;
+}

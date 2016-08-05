@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Amilia passport</title>
+    <title>Passeport Amilia</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -46,6 +46,168 @@
         </ul>
       </div>
     </div>
+
+<script id="home-template" type="text/template">
+  <div class="wrapper">
+    <div class="center">
+      <h1>Passeport Amilia</h1>
+      <br/>
+      <p class="lead">
+        <span class="account">Compte : Famille Drapeau</span>
+      </p>
+      <p>
+        <a href="#" class="change-account"><i class="fa fa-fw fa-arrow-circle-right"></i> Changer de compte</a>
+      </p>
+    </div>
+  </div>
+</script>
+
+<script id="membership-template" type="text/template">
+  <div class="row first">
+    <div class="org">
+      <div class="logo">
+        <img src="<%=OrganizationLogoUrl%>"/>
+      </div>
+      <div class="info">
+        <div class="name"><%=OrganizationName%></div>
+        <div class="website"><%=Name%></div>
+        <br/>
+        <div class="email"><%=OrganizationEmail%></div>
+        <div class="phone"><%=OrganizationPhone%></div>
+      </div>
+    </div>
+    <div class="picture">
+      <img src="<%=ProfilePictureUrl%>"/>
+    </div>
+  </div>
+  <div class="row second">
+    <div class="person-info">
+      <div class="name"><%=FirstName%> <%=LastName%></div>
+      <canvas class="bar-code pull-left"></canvas>
+      <div class="dates pull-right">Exp: 31 déc 2016</div>
+    </div>
+  </div>
+</script>
+
+<script id="purchase-template" type="text/template">
+  <div class="col org"><img src="<%=OrganizationLogoUrl%>" /></div>
+  <div class="col name"><strong><%=OrganizationName%></strong><br/><%=Name%></div>
+  <div class="col person">
+    <img src="<%=ProfilePictureUrl%>" />
+    <div class="name"><%=FirstName%></div>
+  </div>
+  <div class="col invoice"><a href="#" class="show-receipt">Facture</a></div>
+</script>
+
+<script id="receipt-template" type="text/template">
+  <div class="receipt">
+    <div class="vpad">
+      <table cellpadding="0" cellspacing="0" border="0" style="width: 100%;">
+        <tbody>
+          <tr>
+            <td>
+              <img id="imgLogo" src="http://920ba9fd3751ea583b28-4b4fba300ebd32f891e458bb2df9e92a.r6.cf2.rackcdn.com/logo101_1196.jpg" style="max-height: 120px; max-width: 230px;">
+            </td>
+            <td style="text-align: right;">
+              <span style="cursor: pointer;" onclick=" window.print(); " class="noprint">
+                Print this page <img src="https://545e929803ffbf14b888-d8549e80f103572a714e7545d2368cf6.ssl.cf2.rackcdn.com/411/themes/amilia/images/print.gif" id="imgPrint">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="ctl09_divHeader">
+      <div style="float: right">3/8/2016</div>
+      <div>Invoice no. 2737063</div>
+      <table cellpadding="0" cellspacing="0" class="hspace" style="margin-top: 1ex; width: 100%;">
+        <tbody>
+          <tr>
+            <td>
+              <div>
+                <div style="font-weight: bold">Client</div>
+                <div>Martin Drapeau</div>
+                <div>10410 Waverly<br>Montreal, QC<br>H3L 2W4</div>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+            <td id="ctl09_shippingAddress">
+              <div>
+                <div style="font-weight: bold"></div>
+                <div></div>
+              </div>
+            </td>
+
+            <td id="ctl09_shippingAddressSpace">&nbsp;</td>
+
+            <td style="float: right;">
+              <div>
+                <div style="font-weight: bold">Organization</div>
+                <div>Sports Montréal</div>
+                <div>1000 Ave Émile-Journault<br>Montréal, QC<br>H2M 2E7</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 1ex">
+      <table class="list hspace" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td>
+            Ludovic Bazinet / Camp de jour été 2016 - Camp option hockey cosom - Hockey cosom, 7-8 ans - Semaine 7 : 8 au 12 août 2016<br>Lieu : Complexe Claude-Robillard<br>Horaire : Du lundi au vendredi de 09:00 à 16:00, du 8 août 2016 jusqu'au 12 août 2016.<br>Note : L'accueil se fait au complexe sportif Claude-Robillard.<br>L'accueil se fait au complexe sportif Claude-Robillard.<br><br><i class="fa fa-fw fa-book"></i> Session
+            </td>
+            <td class="cash">$159.00</td>
+            <td>&nbsp;</td>
+          </tr>
+
+          <tr><td colspan="3">&nbsp;</td></tr>
+          <tr style="font-weight: bold">
+            <td style="text-align: right; padding-right: 8px;">Subtotal</td>
+            <td class="cash">$159.00</td>
+            <td></td>
+          </tr>      
+          <tr id="ctl09_rptrItems_ctl02_trTax1" style="font-weight: bold">
+            <td style="text-align: right; padding-right: 8px;">GST (#130370943)</td>
+            <td class="cash">$0.00</td>
+            <td></td>
+          </tr>
+
+          <tr id="ctl09_rptrItems_ctl02_trTax2" style="font-weight: bold">
+            <td style="text-align: right; padding-right: 8px;">QST (#1011060931)</td>
+            <td class="cash">$0.00</td>
+            <td></td>
+          </tr>
+
+          <tr style="font-weight: bold">
+            <td style="text-align: right; padding-right: 8px;">Total</td>
+            <td class="cash">$159.00</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div id="ctl09_divFooter" style="margin-top: 2ex">
+      Created by: martin.drapeau@amilia.com
+    </div>
+    <div style="text-align: center;"><a href="#" class="close">Fermer</a></div>
+
+    <div id="footer">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          <tr>
+            <td align="left">© 2004-2016, <strong>Amilia Corporation</strong>, All rights reserved.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </div>
+</script>
 
   </body>
 </html>

@@ -16,32 +16,7 @@
 
 
   Backbone.MembershipView = Backbone.View.extend({
-    template: _.template([
-      '<div class="row first">',
-      '  <div class="org">',
-      '    <div class="logo">',
-      '      <img src="<%=OrganizationLogoUrl%>"/>',
-      '    </div>',
-      '    <div class="info">',
-      '      <div class="name"><%=OrganizationName%></div>',
-      '      <div class="website"><%=Name%></div>',
-      '      <br/>',
-      '      <div class="email"><%=OrganizationEmail%></div>',
-      '      <div class="phone"><%=OrganizationPhone%></div>',
-      '    </div>',
-      '  </div>',
-      '  <div class="picture">',
-      '    <img src="<%=ProfilePictureUrl%>"/>',
-      '  </div>',
-      '</div>',
-      '<div class="row second">',
-      '  <div class="person-info">',
-      '    <div class="name"><%=FirstName%> <%=LastName%></div>',
-      '    <canvas class="bar-code pull-left"></canvas>',
-      '    <div class="dates pull-right">Exp: 31 déc 2016</div>',
-      '  </div>',
-      '</div>'
-    ].join('\n')),
+    template: undefined,
     className: 'card',
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
@@ -61,6 +36,9 @@
 
       return this;
     }
+  });
+  $('document').ready(function() {
+    Backbone.MembershipView.prototype.template = _.template($('#membership-template').html());
   });
 
   Backbone.MembershipsView = Backbone.View.extend({
