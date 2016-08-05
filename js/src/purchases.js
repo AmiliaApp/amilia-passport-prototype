@@ -14,6 +14,17 @@
     events: {
       'click .close': 'onClose',
     },
+    initialize: function(options) {
+      this.onResize = _.bind(_.debounce(this.onResize, 100), this);
+      $(window).on('resize', this.onResize);
+    },
+    remove: function() {
+      $(window).off('resize', this.onResize);
+      return Backbone.View.prototype.remove.apply(this, arguments);
+    },
+    onResize: function() {
+      this.render();
+    },
     onClose: function(e) {
       e.preventDefault();
       var view = this;
@@ -27,8 +38,6 @@
       this.$el.find('.receipt').css({
         width: Math.min(Math.max(screen.width, screen.height), Backbone.SCREEN_MAX_WIDTH) - Backbone.SIDE_MENU_WIDTH
       });
-
-      this.$el.hide();
 
       return this;
     }
@@ -59,6 +68,7 @@
       var receiptView = new Backbone.ReceiptView({
         model: this.model
       }).render();
+      receiptView.$el.hide();
       $('#purchases').append(receiptView.$el);
       receiptView.$el.fadeIn();
     },
