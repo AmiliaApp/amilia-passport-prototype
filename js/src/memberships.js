@@ -43,13 +43,13 @@
 
   Backbone.MembershipsView = Backbone.View.extend({
     className: 'cards',
-    events: {
+    /*events: {
       'scroll': 'onScroll',
       'mousedown': 'onMousedown',
       'mouseup': 'onMouseup',
       'touchstart': 'onMousedown',
       'touchend': 'onMouseup'
-    },
+    },*/
     initialize: function(options) {
       this.maybeSnap = _.bind(_.debounce(this.maybeSnap, 250), this);
       this.checkScrollDone = _.bind(_.debounce(this.checkScrollDone, 100), this);
