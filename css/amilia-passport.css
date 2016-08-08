@@ -175,8 +175,7 @@ body {
   padding-bottom: 15px;
 }
 
-.purchase,
-.event {
+.purchase {
   display: table;
   table-layout: fixed;
   background-color: #fff;
@@ -184,27 +183,29 @@ body {
   padding: 15px;
   margin-top: 15px;
 }
-.purchase .col,
-.event .col {
+
+.purchase .col {
   display: table-cell;
   padding: 5px;
 }
 
-.purchase .col img,
-.event .col img {
+.purchase .col img {
   width: 60px;
 }
 
-.purchase .col.name,
-.event .col.name {
+.purchase .col.name {
   vertical-align: top;
   width: 50%;
 }
 
-.purchase .col.person,
-.event .col.person {
+.purchase .col.person {
   vertical-align: top;
   text-align: center;
+}
+
+.purchase .col.invoice {
+  vertical-align: middle;
+  text-align: right;
 }
 
 .receipt-wrapper {
@@ -224,4 +225,51 @@ body {
   background-color: #fff;
   border: 1px solid #999;
   padding: 15px;
+}
+
+.event {
+  display: table;
+  table-layout: fixed;
+  background-color: #fff;
+  max-width: 581px;
+  margin-top: 2px;
+  padding: 5px;
+}
+
+.event-date {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.event .col {
+  display: table-cell;
+  padding: 5px;
+}
+
+.event .col.when {
+  vertical-align: top;
+  width: 20%;
+  border-right: 2px solid #009900;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.event .col.when.past {
+  border-right: 2px solid #666;
+}
+
+.event .col.when .end {
+  color: #999;
+}
+
+.event .col.title {
+  vertical-align: top;
+  width: 60%;
+  padding-left: 15px;
+}
+
+.event .col.invoice {
+  vertical-align: middle;
+  text-align: right;
 }
