@@ -9,7 +9,11 @@ $(document).ready(function() {
         }),
         memberships: new Backbone.MembershipsView({
           el: $('#memberships'),
-          collection: new Backbone.MembershipCollection(window._membershipCards)
+          collection: new Backbone.MembershipCollection(window._memberships)
+        }),
+        events: new Backbone.EventsView({
+          el: $('#events'),
+          collection: new Backbone.EventCollection(window._events)
         }),
         purchases: new Backbone.PurchasesView({
           el: $('#purchases'),

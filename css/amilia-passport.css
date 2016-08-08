@@ -170,11 +170,13 @@ body {
     padding: 20px 0;
 }
 
-.purchases {
+.purchases,
+.events {
   padding-bottom: 15px;
 }
 
-.purchase {
+.purchase,
+.event {
   display: table;
   table-layout: fixed;
   background-color: #fff;
@@ -182,21 +184,25 @@ body {
   padding: 15px;
   margin-top: 15px;
 }
-.purchase .col {
+.purchase .col,
+.event .col {
   display: table-cell;
   padding: 5px;
 }
 
-.purchase .col img {
+.purchase .col img,
+.event .col img {
   width: 60px;
 }
 
-.purchase .col.name {
+.purchase .col.name,
+.event .col.name {
   vertical-align: top;
   width: 50%;
 }
 
-.purchase .col.person {
+.purchase .col.person,
+.event .col.person {
   vertical-align: top;
   text-align: center;
 }

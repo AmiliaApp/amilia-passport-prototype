@@ -52,17 +52,6 @@
     events: {
       'click a.show-receipt': 'onReceipt'
     },
-    initialize: function(options) {
-      this.onResize = _.bind(_.debounce(this.onResize, 100), this);
-      $(window).on('resize', this.onResize);
-    },
-    remove: function() {
-      $(window).off('resize', this.onResize);
-      return Backbone.View.prototype.remove.apply(this, arguments);
-    },
-    onResize: function() {
-      this.render();
-    },
     onReceipt: function(e) {
       e.preventDefault();
       var receiptView = new Backbone.ReceiptView({
@@ -98,17 +87,17 @@
       this.render();
     },
     render: function() {
-      this.purchases || (this.purchases = []);
-      for (var i = 0; i < this.purchases.length; i++) this.purchases[i].remove();
-      this.purchases = [];
+      this.views || (this.views = []);
+      for (var i = 0; i < this.views.length; i++) this.views[i].remove();
+      this.views = [];
 
       var self = this;
       this.collection.each(function(model) {
-        var purchase = new Backbone.PurchaseView({
+        var view = new Backbone.PurchaseView({
           model: model
         });
-        self.$el.append(purchase.render().$el);
-        self.purchases.push(purchase);
+        self.$el.append(view.render().$el);
+        self.views.push(view);
       });
       return this;
     }

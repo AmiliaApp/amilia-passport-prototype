@@ -1,6 +1,6 @@
 (function() {
 
-  window._membershipCards = [{
+  window._memberships = [{
     PersonId: 17632745,
     From: '2016-01-01',
     To: '2016-12-31',
@@ -135,5 +135,7 @@
     OrganizationLogoUrl: 'img/tennis-montreal.png',
     OrganizationName: "Tennis Montréal"
   }];
+
+  window._events = [];
 
 }.call(this));
