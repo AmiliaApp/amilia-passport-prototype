@@ -282,4 +282,39 @@
     OrganizationName: "Tennis Montréal"
   }];
 
+  window._communications = [{
+    Id: 1000,
+    Status: 'Unread',
+    When: '2016-08-06',
+    From: 'Seb Goal',
+    Subject: "Camp option hockey cosom",
+    Body: "Bonjour Ludovic,<br/>Voici la liste des choses à apporter:<br/><ul><li>bouteille d'eau</li><li>bâton</li><li>protèges tibias</li></ul>",
+    InvoiceId: 2003,
+    OrganizationId: 201,
+    OrganizationLogoUrl: 'img/sports-montreal.jpg',
+    OrganizationName: "Sports Montréal"
+  }, {
+    Id: 1001,
+    Status: 'Read',
+    When: '2016-08-01',
+    From: 'Julie Yoga',
+    Subject: "Power yoga - mercredi 20 mai, cours annulé",
+    Body: "Le cours de ce soir a été annulé. Il sera repris à la fin de la session.",
+    InvoiceId: 2003,
+    OrganizationId: 201,
+    OrganizationLogoUrl: 'img/sports-montreal.jpg',
+    OrganizationName: "Sports Montréal"
+  }, {
+    Id: 1002,
+    Status: 'Read',
+    When: '2016-06-30',
+    From: 'Rafa Nadal',
+    Subject: "LIGUE RÉCRÉATIVE (jeu en double) Mardi, Niv. 3.5/4.0 - 19h00 à 21h00",
+    Body: "Bienvenu au cours que je vais donner. J'ai pris ma retraite professionnelle justement pour vous!",
+    InvoiceId: 2003,
+    OrganizationId: 201,
+    OrganizationLogoUrl: 'img/sports-montreal.jpg',
+    OrganizationName: "Sports Montréal"
+  }];
+
 }.call(this));

@@ -19,8 +19,9 @@ $(document).ready(function() {
           el: $('#purchases'),
           collection: new Backbone.PurchaseCollection(window._purchases)
         }),
-        communications: new Backbone.View({
-          el: $('#communications')
+        communications: new Backbone.CommunicationsView({
+          el: $('#communications'),
+          collection: new Backbone.CommunicationCollection(window._communications)
         })
       };
 

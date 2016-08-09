@@ -58,6 +58,16 @@ body {
   margin: 0;
 }
 
+#side-menu .navbar-nav>li>a .counter {
+  position: absolute;
+  background-color: #006600;
+  right: 8px;
+  bottom: 6px;
+  font-size: 10px;
+  min-width: 5px;
+  padding: 3px 5px;
+}
+
 .content {
   padding-left: 71px;
   position: fixed;
@@ -272,4 +282,61 @@ body {
 .event .col.invoice {
   vertical-align: middle;
   text-align: right;
+}
+
+.communications {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.communication {
+  display: table;
+  table-layout: fixed;
+  background-color: #fff;
+  max-width: 581px;
+  margin-top: 2px;
+  padding: 5px;
+}
+
+.communication .col {
+  display: table-cell;
+  vertical-align: top;
+  padding: 5px;
+}
+
+.communication .col.status {
+  width: 5%;
+  color: #666;
+}
+
+.communication.Unread .col.status {
+  color: #009900;
+}
+
+.communication .col.info {
+  width: 95%;
+}
+
+.communication .col.info .line .from {
+  float:left;
+  max-width: 70%;
+}
+
+.communication.Unread .col.info .line .from {
+  font-weight: bold;
+}
+
+.communication .col.info .line .when {
+  float: right;
+  max-width: 20%;
+  text-align: right;
+  color: #999;
+}
+
+.communication .col.info .line .clear {
+  clear: both;
+}
+
+.communication .col.info .subject {
+  font-weight: bold;
 }
