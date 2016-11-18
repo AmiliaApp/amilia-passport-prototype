@@ -22,6 +22,10 @@ $(document).ready(function() {
         communications: new Backbone.CommunicationsView({
           el: $('#communications'),
           collection: new Backbone.CommunicationCollection(window._communications)
+        }),
+        kiosk: new Backbone.KioskView({
+          el: $('#kiosk'),
+          model: new Backbone.KioskModel()
         })
       };
 

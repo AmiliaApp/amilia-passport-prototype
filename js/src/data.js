@@ -1,6 +1,21 @@
 (function() {
 
   window._memberships = [{
+    PersonId: 10192837,
+    From: '2015-09-01',
+    To: '2016-08-31',
+    Name: 'Registered member',
+    FirstName: 'Emilia',
+    LastName: 'Drapeau',
+    ProfilePictureUrl: 'img/emilia.jpg',
+    OrganizationId: 501,
+    OrganizationLogoUrl: 'img/skate-canada.png',
+    OrganizationName: "Skate Canada",
+    OrganizationAddress: "261 – 1200 St. Laurent Blvd., Ottawa, ON, K1K 3B8",
+    OrganizationPhone: "(613) 747-1007",
+    OrganizationEmail: "info@skatecanada.ca",
+    OrganizationWebsite: "skatecanada.ca"
+  }, {
     PersonId: 17632745,
     From: '2016-01-01',
     To: '2016-12-31',
