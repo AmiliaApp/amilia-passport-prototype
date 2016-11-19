@@ -1,6 +1,21 @@
 (function() {
 
   window._memberships = [{
+    PersonId: 1,
+    From: '2016-01-01',
+    To: '2016-12-31',
+    Name: 'Accès au gymnase',
+    FirstName: 'Emilia',
+    LastName: 'Drapeau',
+    ProfilePictureUrl: 'img/emilia.jpg',
+    OrganizationId: 201,
+    OrganizationLogoUrl: 'img/sports-montreal.jpg',
+    OrganizationName: "Sports Montréal",
+    OrganizationAddress: "1000 Ave Émile-Journault, Montréal, QC, H2M 2E7, CA",
+    OrganizationPhone: "(514) 872-7177",
+    OrganizationEmail: "info@sportsmontreal.com",
+    OrganizationWebsite: "www.sportsmontreal.com"
+  }, {
     PersonId: 2,
     From: '2016-01-01',
     To: '2016-12-31',
@@ -16,24 +31,9 @@
     OrganizationEmail: "info@tennismontreal.qc.ca",
     OrganizationWebsite: "www.tennismontreal.qc.ca"
   }, {
-    PersonId: 1,
-    From: '2016-01-01',
-    To: '2016-08-31',
-    Name: 'Accès au gymnase',
-    FirstName: 'Emilia',
-    LastName: 'Drapeau',
-    ProfilePictureUrl: 'img/emilia.jpg',
-    OrganizationId: 201,
-    OrganizationLogoUrl: 'img/sports-montreal.jpg',
-    OrganizationName: "Sports Montréal",
-    OrganizationAddress: "1000 Ave Émile-Journault, Montréal, QC, H2M 2E7, CA",
-    OrganizationPhone: "(514) 872-7177",
-    OrganizationEmail: "info@sportsmontreal.com",
-    OrganizationWebsite: "www.sportsmontreal.com"
-  }, {
     PersonId: 3,
     From: '2016-01-01',
-    To: '2016-12-31',
+    To: '2016-08-31',
     Name: 'Accès au gymnase',
     FirstName: 'Ludovic',
     LastName: 'Bazinet',
