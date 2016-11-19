@@ -17,6 +17,19 @@
     OrganizationWebsite: "www.tennismontreal.qc.ca"
   };
 
+  var MembershipView = Backbone.MembershipView.extend({
+    className: 'card',
+    render: function() {
+      var personId = this.model.get('PersonId');
+      if (personId) {
+        Backbone.MembershipView.prototype.render.apply(this, arguments);
+      } else {
+        this.$el.text('?').addClass('blank');
+      }
+      return this;
+    }
+  });
+
   Backbone.KioskModel = Backbone.Model.extend({
     defaults: {
       input: undefined,
@@ -45,10 +58,8 @@
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
 
-      var membership = new Backbone.MembershipModel(this.model.get("membership")),
-          personId = membership.get('PersonId')
-          html = personId ? new Backbone.MembershipView({model: membership}).render().$el : $('<div class="card unknown">?</div>');
-      this.$('.card').replaceWith(html);
+      var membership = new Backbone.MembershipModel(this.model.get("membership"));
+      this.$('.card').replaceWith(new MembershipView({model: membership}).render().$el);
 
       this.$('.actions button').hide();
 
@@ -59,7 +70,9 @@
       this.$continue = this.$('button.continue');
 
       var input = this.model.get('input'),
-          state = personId ? 'pass' : input === undefined ? 'disabled' : 'fail';
+          personId = membership.get('PersonId'),
+          state = personId ? 'pass' : input === undefined ? 'disabled' : 'fail',
+          addClass = undefined;
       if (moment(membership.get('To')).isBefore(moment())) state = 'expired';
 
       switch (state) {
@@ -68,20 +81,28 @@
           this.$continue.show();
           this.$message.html('<i class="fa fa-fw fa-check"></i> Passage enregistré');
           this.$messageSmall.empty();
+          addClass = 'scale';
           break;
         case 'expired':
           this.$input.hide();
           this.$continue.show();
           this.$message.html('<i class="fa fa-fw fa-warning"></i> Abonnement expiré');
           this.$messageSmall.html('Allez voir le préposé pour le renouveler');
+          addClass = 'expired';
           break;
         case 'fail':
           this.$message.html('<i class="fa fa-fw fa-times"></i> Numéro invalide');
           this.$messageSmall.html('Essayez à nouveau');
+          addClass = 'invalid'
           break;
         default:
           this.$card.addClass('disabled');
       }
+
+      var $card = this.$card;
+      setTimeout(function() {
+        $card.addClass(addClass);
+      }, 100);
 
       return this;
     },
