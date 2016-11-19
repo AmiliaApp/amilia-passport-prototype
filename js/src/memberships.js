@@ -6,6 +6,11 @@
   Backbone.SCREEN_MAX_WIDTH = 675;
   Backbone.SCREEN_MAX_HEIGHT = 375;
 
+  function zeroPad(num, places) {
+    var zero = places - num.toString().length + 1;
+    return Array(+(zero > 0 && zero)).join("0") + num;
+  }
+
   Backbone.MembershipModel = Backbone.Model.extend({
     idAttribute: 'Id'
   });
@@ -29,7 +34,10 @@
       });
       this.$barCode = this.$el.find('.bar-code');
 
-      JsBarcode(this.$barCode[0], 'P' + this.model.get('PersonId'), {
+      var id = (this.model.get('PersonId') || '?????');
+      if (_.isNumber(id)) id = zeroPad(id, 10);
+
+      JsBarcode(this.$barCode[0], 'P' + id, {
         width: screenWidth < 600 ? 2 : 3,
         height: screenWidth < 600 ? 40 : 50
       });

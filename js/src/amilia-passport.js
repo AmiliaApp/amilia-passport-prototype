@@ -25,7 +25,8 @@ $(document).ready(function() {
         }),
         kiosk: new Backbone.KioskView({
           el: $('#kiosk'),
-          model: new Backbone.KioskModel()
+          model: new Backbone.KioskModel(),
+          collection: new Backbone.MembershipCollection(window._memberships)
         })
       };
 
@@ -81,7 +82,7 @@ $(document).ready(function() {
     }
   });
 
-  new Backbone.PassportApp({
+  window.app = new Backbone.PassportApp({
     el: $('#side-menu')
   }).render();
 

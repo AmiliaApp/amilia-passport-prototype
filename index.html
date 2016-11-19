@@ -18,6 +18,8 @@
     <script src="js/3rd/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/3rd/underscore.js" type="text/javascript"></script>
     <script src="js/3rd/backbone.js" type="text/javascript"></script>
+    <script src="js/3rd/moment.js" type="text/javascript"></script>
+    <script src="js/3rd/moment.fr-ca.js" type="text/javascript"></script>
 
     <script src="js/src/home.js" type="text/javascript"></script>
     <script src="js/src/memberships.js" type="text/javascript"></script>
@@ -78,10 +80,13 @@
   <div class="wrapper">
     <div class="center">
       <div class="card"></div>
-      <div class="message">scanner votre carte</div>
-      <div class="actions"></div>
+      <div class="message">scannez votre carte</div>
+      <div class="message-small">ou entrez votre numéro ou courriel</div>
+      <div class="form-group actions">
+        <button class="btn btn-lg btn-success continue">Continuer</button>
+      </div>
       <div class="form-group input">
-        <input type="text" class="form-control live-input input-lg" name="Code" placeholder="Amilia ID ou Courriel">
+        <input type="text" class="form-control live-input input-lg" name="Code" placeholder="Amilia ID ou Courriel" value="<%=input%>">
       </div>
     </div>
   </div>
@@ -109,7 +114,14 @@
     <div class="person-info">
       <div class="name"><%=FirstName%> <%=LastName%></div>
       <canvas class="bar-code pull-left"></canvas>
-      <div class="dates pull-right">Exp: 31 Aug 2016</div>
+      <% if (To !== undefined) { %>
+        <div class="dates pull-right">
+          <span>Exp: <%=moment(To).format('ll')%></span>
+          <% if (moment(To).isBefore(moment())) { %>
+            <br/><span class="expired">Carte expirée</span>
+          <% } %> 
+        </div>
+      <% } %>
     </div>
   </div>
 </script>
