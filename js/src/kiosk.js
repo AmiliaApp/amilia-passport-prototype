@@ -66,7 +66,7 @@
         case 'pass':
           this.$input.hide();
           this.$continue.show();
-          this.$message.html('<i class="fa fa-fw fa-check"></i> Passage enregistrer');
+          this.$message.html('<i class="fa fa-fw fa-check"></i> Passage enregistré');
           this.$messageSmall.empty();
           break;
         case 'expired':
