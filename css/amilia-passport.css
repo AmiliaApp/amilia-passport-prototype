@@ -400,7 +400,6 @@ body {
     display: inline-block;
     box-shadow: 0 0 0 0 rgba(248, 248, 70, 0.5) !important;
     animation: pulse-yellow 1.5s infinite;
-    &:hover { animation: none; }
 }
 @keyframes pulse-yellow {
     80% { box-shadow: 0 0 0 20px rgba(248, 248, 70, 0); }
